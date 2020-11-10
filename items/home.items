@@ -1,0 +1,11 @@
+//Lifx
+Dimmer Lifx_Temperature { channel="lifx:colorlight:D073D513EBA4:temperature" }
+Color  Lifx_Brightness { channel="lifx:colorlight:D073D513EBA4:color" }
+
+//Philips TV
+Dimmer VolumeTV 				"Volume [%d]"		<slider> {jointspace="*:volume, POLL:volume"}
+Switch MuteSwitch				"Mute" <settings> {jointspace="ON:key.Mute, OFF:key.Mute, POLL:volume.mute"}
+Switch Source "Source" {jointspace="*:key.Source"}
+Switch AmbilightOnOff "AmbilightOnOff" {jointspace="*:key.AmbilightOnOff"}
+Switch Standby "Standby" {jointspace="*:key.Standby"}
+Number SetSource "Set Source" {jointspace="1:source.tv, 2:source.hdmi1, 3:source.hdmi2, 4:source.hdmi3, 5:source.hdmiside"}

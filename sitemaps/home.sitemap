@@ -1,0 +1,15 @@
+sitemap home label="Home" {
+    
+    Frame label="Lifx"  {
+    	Slider item= Lifx_Brightness
+		Colorpicker item= Lifx_Brightness
+    }
+
+    Frame label="TV"  {
+    	Slider item= VolumeTV
+        Switch item= Standby label="Ceiling Light" icon="light"
+        Switch item= AmbilightOnOff label="Ceiling Light" icon="light"
+
+    }
+    
+}
