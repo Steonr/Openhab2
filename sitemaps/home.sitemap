@@ -1,15 +1,19 @@
 sitemap home label="Home" {
-    
-    Frame label="Lifx"  {
-    	Slider item= Lifx_Brightness
-		Colorpicker item= Lifx_Brightness
+    Text label="TV" icon="screen"{
+    	Slider item= VolumeTV label="Volume [%d]" icon="soundvolume"
+        Switch item= Standby label="Shutdown" icon="soundvolume_mute"
+        Switch item=SetSource label="Source" mappings=[1="TV", 2="HDMI 1", 3="HDMI 2", 4="HDMI 3", 5="HDMI SIDE"]
+        Text label="Ambi-lights" icon="lightbulb" {
+            //AMBILIGHT
+            Switch item= AmbilightOnOff label="Ambi-light ON/OFF" icon="switch"
+            Switch item= ActivateAmbilight label="Activate Ambi-light" icon="switch"
+            Colorpicker item= AmbilightAll label="All lights" icon="colorpicker" 
+            Colorpicker item= AmbilightLeft label="Lights left" icon="colorpicker" 
+            Colorpicker item= AmbilightRight label="Lights right" icon="colorpicker" 
+        }
     }
-
-    Frame label="TV"  {
-    	Slider item= VolumeTV
-        Switch item= Standby label="Ceiling Light" icon="light"
-        Switch item= AmbilightOnOff label="Ceiling Light" icon="light"
-
+    Text label="Lifx" icon="lightbulb"{
+    	Slider item= Lifx_Brightness label="Lifx Brightness"
+		Colorpicker item= Lifx_Brightness label="Lifx Color"
     }
-    
 }

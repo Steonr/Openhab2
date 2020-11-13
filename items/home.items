@@ -6,6 +6,12 @@ Color  Lifx_Brightness { channel="lifx:colorlight:D073D513EBA4:color" }
 Dimmer VolumeTV 				"Volume [%d]"		<slider> {jointspace="*:volume, POLL:volume"}
 Switch MuteSwitch				"Mute" <settings> {jointspace="ON:key.Mute, OFF:key.Mute, POLL:volume.mute"}
 Switch Source "Source" {jointspace="*:key.Source"}
-Switch AmbilightOnOff "AmbilightOnOff" {jointspace="*:key.AmbilightOnOff"}
 Switch Standby "Standby" {jointspace="*:key.Standby"}
 Number SetSource "Set Source" {jointspace="1:source.tv, 2:source.hdmi1, 3:source.hdmi2, 4:source.hdmi3, 5:source.hdmiside"}
+
+//Philips TV Ambilight
+Switch AmbilightOnOff "AmbilightOnOff" {jointspace="*:key.AmbilightOnOff"}
+Switch ActivateAmbilight		"Ambilight Manipulation" <settings> 		 {jointspace="ON:ambilight.mode.manual, OFF:ambilight.mode.internal"}
+Color  AmbilightAll			    "Ambilight All"			<colorwheel> {jointspace="HSB:ambilight.color"}
+Color  AmbilightLeft			"Ambilight Left"		<colorwheel> {jointspace="HSB:ambilight[layer1[left]].color"}
+Color  AmbilightRight			"Ambilight Right"		<colorwheel> {jointspace="HSB:ambilight[layer1[right]].color"}
