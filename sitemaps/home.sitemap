@@ -16,4 +16,5 @@ sitemap home label="Home" {
     	Slider item= Lifx_Brightness label="Lifx Brightness"
 		Colorpicker item= Lifx_Brightness label="Lifx Color"
     }
+    Switch item=dummy label="UDP Send" icon="switch"  
 }

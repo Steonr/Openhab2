@@ -1,0 +1,11 @@
+rule "TEST"
+when 
+    Item dummy changed to ON
+then
+    
+    var String mymessage
+    mymessage = UDPReceive
+    logInfo("openhab", "received message: " + mymessage)
+        
+end
+
