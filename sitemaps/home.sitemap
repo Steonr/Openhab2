@@ -5,16 +5,15 @@ sitemap home label="Home" {
         Switch item=SetSource label="Source" mappings=[1="TV", 2="HDMI 1", 3="HDMI 2", 4="HDMI 3", 5="HDMI SIDE"]
         Text label="Ambi-lights" icon="lightbulb" {
             //AMBILIGHT
-            Switch item= AmbilightOnOff label="Ambi-light ON/OFF" icon="switch"
             Switch item= ActivateAmbilight label="Activate Ambi-light" icon="switch"
             Colorpicker item= AmbilightAll label="All lights" icon="colorpicker" 
             Colorpicker item= AmbilightLeft label="Lights left" icon="colorpicker" 
             Colorpicker item= AmbilightRight label="Lights right" icon="colorpicker" 
+            Colorpicker item= AmbilightTop label="Lights Top" icon="colorpicker"
         }
     }
     Text label="Lifx" icon="lightbulb"{
     	Slider item= Lifx_Brightness label="Lifx Brightness"
 		Colorpicker item= Lifx_Brightness label="Lifx Color"
     }
-    Switch item=dummy label="UDP Send" icon="switch"  
 }

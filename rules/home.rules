@@ -1,11 +1,19 @@
-rule "TEST"
+rule "TEST Send"
 when 
     Item dummy changed to ON
 then
-    
-    var String mymessage
-    mymessage = UDPReceive
-    logInfo("openhab", "received message: " + mymessage)
-        
+    var String text
+    text = "Hello world"
+    sendCommand(UDPSend, text)
+    logInfo("openhab", "send message "+ text)
+end
+
+rule "Read string"
+when
+    Item UDPReceive changed 
+then
+    var String text = UDPReceive.state.toString()
+    logInfo("openhab", "UDP Received message: "+ text)
+    sendCommand(UDPSend, text)
 end
 
