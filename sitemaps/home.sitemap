@@ -10,10 +10,15 @@ sitemap home label="Home" {
             Colorpicker item= AmbilightLeft label="Lights left" icon="colorpicker" 
             Colorpicker item= AmbilightRight label="Lights right" icon="colorpicker" 
             Colorpicker item= AmbilightTop label="Lights Top" icon="colorpicker"
+            Switch item= startPattern label="Show pattern" icon="alarm"
+            Text label="Ambi-lights settings" icon="settings" {
+                Colorpicker item= colorSettings label="Color of pattern" icon="colorpicker"
+            }
         }
     }
     Text label="Lifx" icon="lightbulb"{
     	Slider item= Lifx_Brightness label="Lifx Brightness"
 		Colorpicker item= Lifx_Brightness label="Lifx Color"
     }
+    Switch item=Start
 }

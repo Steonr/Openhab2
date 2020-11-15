@@ -1,3 +1,8 @@
+//VARIABLES:
+var Timer timer 
+var int i
+var HSBType colorPattern
+
 rule "TEST Send"
 when 
     Item dummy changed to ON
@@ -17,3 +22,59 @@ then
     sendCommand(UDPSend, text)
 end
 
+rule "Start Pattern"
+when
+    Item startPattern changed to ON
+then
+    logInfo("openhab", "beginning of rule")
+    logInfo("openhab", "light = " + "0,0,100")
+    i = 1
+    var Timer timer = createTimer(now, [ |
+        if(i<=8){
+            switch(i) {
+                case 1: {   
+                            logInfo("openhab", "case = " + i.toString) 
+                            logInfo("openhab", "light = " + colorSettings.state.toString)
+                    }
+                case 2: {
+                            logInfo("openhab", "case = " + i.toString)
+                            logInfo("openhab", "light = " + colorSettings.state.toString)
+                    }
+                case 3: {
+                            logInfo("openhab", "case = " + i.toString)
+                            logInfo("openhab", "light = " + colorSettings.state.toString)
+                    }
+                case 4: {
+                            logInfo("openhab", "case = " + i.toString)
+                            logInfo("openhab", "light = " + colorSettings.state.toString)
+                    }
+                case 5: {
+                            logInfo("openhab", "case = " + i.toString)
+                            logInfo("openhab", "light = " + colorSettings.state.toString)
+                    }
+                case 6: {
+                            logInfo("openhab", "case = " + i.toString)
+                            logInfo("openhab", "light = " + colorSettings.state.toString)
+                    }
+                case 7: {
+                            logInfo("openhab", "case = " + i.toString)
+                            logInfo("openhab", "light = " + colorSettings.state.toString)
+                    }
+                case 8: {
+                            logInfo("openhab", "case = " + i.toString)
+                            logInfo("openhab", "light = " + colorSettings.state.toString)
+                    }
+            }
+            timer.reschedule(now.plusMillis(1000))
+            i+=1
+        }
+    ])
+
+end
+
+rule "Show pattern color"
+when
+    Item colorSettings changed 
+then
+    logInfo("openhab", "Color = " + colorSettings.state.toString)
+end
