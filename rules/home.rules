@@ -1,6 +1,7 @@
 //VARIABLES:
 var Timer timer 
 var int i
+var int j
 var HSBType colorPattern
 
 rule "TEST Send"
@@ -29,6 +30,7 @@ then
     logInfo("openhab", "beginning of rule")
     logInfo("openhab", "light = " + "0,0,100")
     i = 1
+    j = 1
     var Timer timer = createTimer(now, [ |
         if(i<=8){
             switch(i) {
@@ -67,6 +69,46 @@ then
             }
             timer.reschedule(now.plusMillis(1000))
             i+=1
+            if (i>4){
+                switch(j) {
+                    case 1: {   
+                                logInfo("openhab", "case = " + i.toString) 
+                                logInfo("openhab", "light = " + colorSettings.state.toString)
+                        }
+                    case 2: {
+                                logInfo("openhab", "case = " + i.toString)
+                                logInfo("openhab", "light = " + colorSettings.state.toString)
+                        }
+                    case 3: {
+                                logInfo("openhab", "case = " + i.toString)
+                                logInfo("openhab", "light = " + colorSettings.state.toString)
+                        }
+                    case 4: {
+                                logInfo("openhab", "case = " + i.toString)
+                                logInfo("openhab", "light = " + colorSettings.state.toString)
+                        }
+                    case 5: {
+                                logInfo("openhab", "case = " + i.toString)
+                                logInfo("openhab", "light = " + colorSettings.state.toString)
+                        }
+                    case 6: {
+                                logInfo("openhab", "case = " + i.toString)
+                                logInfo("openhab", "light = " + colorSettings.state.toString)
+                        }
+                    case 7: {
+                                logInfo("openhab", "case = " + i.toString)
+                                logInfo("openhab", "light = " + colorSettings.state.toString)
+                        }
+                    case 8: {
+                                logInfo("openhab", "case = " + i.toString)
+                                logInfo("openhab", "light = " + colorSettings.state.toString)
+                        }
+                }
+                j+=1
+                if (j>8){
+                    timer.cancel()
+                }
+            }
         }
     ])
 
