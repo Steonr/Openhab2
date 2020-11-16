@@ -22,10 +22,18 @@ Color  AmbilightPixelLeft1		"Ambilight PixelLeft"	<colorwheel> {jointspace="HSB:
 Color  AmbilightPixelLeft2		"Ambilight PixelLeft"	<colorwheel> {jointspace="HSB:ambilight[layer1[left[1]]].color, POLL:ambilight[layer1[left[1]]].color"}
 Color  AmbilightPixelLeft3		"Ambilight PixelLeft"	<colorwheel> {jointspace="HSB:ambilight[layer1[left[2]]].color, POLL:ambilight[layer1[left[2]]].color"}
 Color  AmbilightPixelLeft4		"Ambilight PixelLeft"	<colorwheel> {jointspace="HSB:ambilight[layer1[left[3]]].color, POLL:ambilight[layer1[left[3]]].color"}
+Color  AmbilightPixelTop1		"Ambilight PixelTop"	<colorwheel> {jointspace="HSB:ambilight[layer1[Top[0]]].color, POLL:ambilight[layer1[Top[0]]].color"}
+Color  AmbilightPixelTop2		"Ambilight PixelTop"	<colorwheel> {jointspace="HSB:ambilight[layer1[Top[1]]].color, POLL:ambilight[layer1[Top[1]]].color"}
+Color  AmbilightPixelTop3		"Ambilight PixelTop"	<colorwheel> {jointspace="HSB:ambilight[layer1[Top[2]]].color, POLL:ambilight[layer1[Top[2]]].color"}
+Color  AmbilightPixelTop4		"Ambilight PixelTop"	<colorwheel> {jointspace="HSB:ambilight[layer1[Top[3]]].color, POLL:ambilight[layer1[Top[3]]].color"}
+Color  AmbilightPixelRight1		"Ambilight PixelRight"	<colorwheel> {jointspace="HSB:ambilight[layer1[Right[0]]].color, POLL:ambilight[layer1[Right[0]]].color"}
+Color  AmbilightPixelRight2		"Ambilight PixelRight"	<colorwheel> {jointspace="HSB:ambilight[layer1[Right[1]]].color, POLL:ambilight[layer1[Right[1]]].color"}
+Color  AmbilightPixelRight3		"Ambilight PixelRight"	<colorwheel> {jointspace="HSB:ambilight[layer1[Right[2]]].color, POLL:ambilight[layer1[Right[2]]].color"}
+Color  AmbilightPixelRight4		"Ambilight PixelRight"	<colorwheel> {jointspace="HSB:ambilight[layer1[Right[3]]].color, POLL:ambilight[layer1[Right[3]]].color"}
 
 //TCP
-String UDPSend	{udp=">[192.168.0.241:1234:REGEX((.*))]"}
-String UDPReceive {udp="<[192.168.0.241:*:REGEX((.*))]"}
+//String UDPSend	{udp=">[192.168.0.241:1234:REGEX((.*))]"}
+//String UDPReceive {udp="<[192.168.0.241:*:REGEX((.*))]"}
 
 //TEST SWITCH
 Switch Start 

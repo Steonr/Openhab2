@@ -1,45 +1,66 @@
 //TIMERS
-//var Timer timer
-//VARIABLES
-//read-only
-val int ledTV = 8
-val int lenPat = 8
-//VARIABLES
-var int i
-var int j
-var int iter
+var Timer timer
+val String text = "Hello world"
+var DecimalType volumetv 
 
-rule "TEST Send"
-when 
-    Item dummy changed to ON
+rule "Update Standby Switch"
+when
+    Item Start changed to ON
 then
-    var String text
-    text = "Hello world"
-    sendCommand(UDPSend, text)
+    sendCommand(Standby, ON)
+end
+
+rule "Update Volume Tv"
+when
+    Item VolumeTV changed
+then
+    var volumetv = VolumeTV.state
+    var sourceTv = Source.state
+    logInfo("openhab", "Volume changed to = " + volumetv)
+    logInfo("openhab", "Source changed to = " + sourceTv)
+end
+
+rule "Show pattern color"
+when
+    Item colorSettings changed 
+then
+    logInfo("openhab", "Color = " + colorSettings.state.toString)
+end
+
+rule "Send UDP message"
+when 
+    Item Start changed to ON
+then
+    //sendCommand(UDPSend, text)
     logInfo("openhab", "send message "+ text)
 end
 
-rule "Read string"
+rule "Receive UDP message"
 when
     Item UDPReceive changed 
 then
-    var String text = UDPReceive.state.toString()
-    logInfo("openhab", "UDP Received message: "+ text)
-    sendCommand(UDPSend, text)
+    //var String receiveMSG
+    //receiveMSG = UDPReceive.state.toString()
+    //logInfo("openhab", "UDP Received message: "+ receiveMSG)
+    //sendCommand(UDPSend, receiveMSG)
 end
-/*
+
+
 rule "Start Pattern"
 when
     Item startPattern changed to ON
 then
-    iter = ledTV + lenPat
-    logInfo("openhab", "beginning of rule") 
-    //sendCommand(AmbilightAll, "1.0,1,100")
-    i = 1
-    j = 1
+    val int ledTV = 8
+    val int lenPat = 8
+    var iter = ledTV + lenPat
+    logInfo("openhab", "beginning of rule, iter = " + iter) 
+    //sendCommand(AmbilightAll, "0,0,100")
+    
+    var i = 1
+    var j = 1
     timer = createTimer(now, [ |
-        if(i<=iter){
-            if (i<=ledTV) {
+        if(i <= iter){
+            if (i <= ledTV) {
                 switch(i) {
                     case 1: {   //sendCommand(AmbilightPixelLeft1, colorSettings.state.toString)
                                 logInfo("openhab", "light ON:" + i.toString) 
@@ -70,7 +91,7 @@ then
                         }
                 }
             }
-            if (i>lenPat){
+            if (i > lenPat){
                 switch(j) {
                     case 1: {   
                                 //sendCommand(AmbilightPixelLeft1, "10.0,10,1")
@@ -101,17 +122,11 @@ then
                                 logInfo("openhab", "light OFF:" + j.toString)
                         }
                 }
-                j+=1
+                j += 1
             }
         }
         timer.reschedule(now.plusMillis(1000))
-        i+=1
+        i += 1
     ])
 end
-*/
-rule "Show pattern color"
-when
-    Item colorSettings changed 
-then
-    logInfo("openhab", "Color = " + colorSettings.state.toString)
-end
+
