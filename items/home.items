@@ -21,6 +21,7 @@ Color colorSettings "Ambilight Setting" <colorwheel>
 Color  AmbilightPixelLeft1		"Ambilight PixelLeft"	<colorwheel> {jointspace="HSB:ambilight[layer1[left[0]]].color, POLL:ambilight[layer1[left[0]]].color"}
 Color  AmbilightPixelLeft2		"Ambilight PixelLeft"	<colorwheel> {jointspace="HSB:ambilight[layer1[left[1]]].color, POLL:ambilight[layer1[left[1]]].color"}
 Color  AmbilightPixelLeft3		"Ambilight PixelLeft"	<colorwheel> {jointspace="HSB:ambilight[layer1[left[2]]].color, POLL:ambilight[layer1[left[2]]].color"}
+Color  AmbilightPixelLeft4		"Ambilight PixelLeft"	<colorwheel> {jointspace="HSB:ambilight[layer1[left[3]]].color, POLL:ambilight[layer1[left[3]]].color"}
 
 //TCP
 String UDPSend	{udp=">[192.168.0.241:1234:REGEX((.*))]"}

@@ -1,8 +1,13 @@
-//VARIABLES:
-var Timer timer 
+//TIMERS
+//var Timer timer
+//VARIABLES
+//read-only
+val int ledTV = 8
+val int lenPat = 8
+//VARIABLES
 var int i
 var int j
-var HSBType colorPattern
+var int iter
 
 rule "TEST Send"
 when 
@@ -22,98 +27,88 @@ then
     logInfo("openhab", "UDP Received message: "+ text)
     sendCommand(UDPSend, text)
 end
-
+/*
 rule "Start Pattern"
 when
     Item startPattern changed to ON
 then
-    logInfo("openhab", "beginning of rule")
-    logInfo("openhab", "light = " + "0,0,100")
+    iter = ledTV + lenPat
+    logInfo("openhab", "beginning of rule") 
+    //sendCommand(AmbilightAll, "1.0,1,100")
     i = 1
     j = 1
-    var Timer timer = createTimer(now, [ |
-        if(i<=8){
-            switch(i) {
-                case 1: {   
-                            logInfo("openhab", "case = " + i.toString) 
-                            logInfo("openhab", "light = " + colorSettings.state.toString)
-                    }
-                case 2: {
-                            logInfo("openhab", "case = " + i.toString)
-                            logInfo("openhab", "light = " + colorSettings.state.toString)
-                    }
-                case 3: {
-                            logInfo("openhab", "case = " + i.toString)
-                            logInfo("openhab", "light = " + colorSettings.state.toString)
-                    }
-                case 4: {
-                            logInfo("openhab", "case = " + i.toString)
-                            logInfo("openhab", "light = " + colorSettings.state.toString)
-                    }
-                case 5: {
-                            logInfo("openhab", "case = " + i.toString)
-                            logInfo("openhab", "light = " + colorSettings.state.toString)
-                    }
-                case 6: {
-                            logInfo("openhab", "case = " + i.toString)
-                            logInfo("openhab", "light = " + colorSettings.state.toString)
-                    }
-                case 7: {
-                            logInfo("openhab", "case = " + i.toString)
-                            logInfo("openhab", "light = " + colorSettings.state.toString)
-                    }
-                case 8: {
-                            logInfo("openhab", "case = " + i.toString)
-                            logInfo("openhab", "light = " + colorSettings.state.toString)
-                    }
-            }
-            timer.reschedule(now.plusMillis(1000))
-            i+=1
-            if (i>4){
-                switch(j) {
-                    case 1: {   
-                                logInfo("openhab", "case = " + i.toString) 
-                                logInfo("openhab", "light = " + colorSettings.state.toString)
+    timer = createTimer(now, [ |
+        if(i<=iter){
+            if (i<=ledTV) {
+                switch(i) {
+                    case 1: {   //sendCommand(AmbilightPixelLeft1, colorSettings.state.toString)
+                                logInfo("openhab", "light ON:" + i.toString) 
                         }
                     case 2: {
-                                logInfo("openhab", "case = " + i.toString)
-                                logInfo("openhab", "light = " + colorSettings.state.toString)
+                                //sendCommand(AmbilightPixelLeft2, colorSettings.state.toString)
+                                logInfo("openhab", "light ON:" + i.toString)
                         }
                     case 3: {
-                                logInfo("openhab", "case = " + i.toString)
-                                logInfo("openhab", "light = " + colorSettings.state.toString)
+                                //sendCommand(AmbilightPixelLeft3, colorSettings.state.toString)
+                                logInfo("openhab", "light ON:" + i.toString)
                         }
                     case 4: {
-                                logInfo("openhab", "case = " + i.toString)
-                                logInfo("openhab", "light = " + colorSettings.state.toString)
+                                //sendCommand(AmbilightPixelLeft4, colorSettings.state.toString)
+                                logInfo("openhab", "light ON:" + i.toString)
                         }
                     case 5: {
-                                logInfo("openhab", "case = " + i.toString)
-                                logInfo("openhab", "light = " + colorSettings.state.toString)
+                                logInfo("openhab", "light ON:" + i.toString)
                         }
                     case 6: {
-                                logInfo("openhab", "case = " + i.toString)
-                                logInfo("openhab", "light = " + colorSettings.state.toString)
+                                logInfo("openhab", "light ON:" + i.toString)
                         }
                     case 7: {
-                                logInfo("openhab", "case = " + i.toString)
-                                logInfo("openhab", "light = " + colorSettings.state.toString)
+                                logInfo("openhab", "light ON:" + i.toString)
                         }
                     case 8: {
-                                logInfo("openhab", "case = " + i.toString)
-                                logInfo("openhab", "light = " + colorSettings.state.toString)
+                                logInfo("openhab", "light ON:" + i.toString)
+                        }
+                }
+            }
+            if (i>lenPat){
+                switch(j) {
+                    case 1: {   
+                                //sendCommand(AmbilightPixelLeft1, "10.0,10,1")
+                                logInfo("openhab", "light OFF:" + j.toString) 
+                        }
+                    case 2: {
+                                //sendCommand(AmbilightPixelLeft2, "10.0,10,1")
+                                logInfo("openhab", "light OFF:" + j.toString)
+                        }
+                    case 3: {
+                                //sendCommand(AmbilightPixelLeft3, "10.0,10,1")
+                                logInfo("openhab", "light OFF:" + j.toString)
+                        }
+                    case 4: {
+                                //sendCommand(AmbilightPixelLeft4, "0,0,0")
+                                logInfo("openhab", "light OFF:" + j.toString)
+                        }
+                    case 5: {
+                                logInfo("openhab", "light OFF:" + j.toString)
+                        }
+                    case 6: {
+                                logInfo("openhab", "light OFF:" + j.toString)
+                        }
+                    case 7: {
+                                logInfo("openhab", "light OFF:" + j.toString)
+                        }
+                    case 8: {
+                                logInfo("openhab", "light OFF:" + j.toString)
                         }
                 }
                 j+=1
-                if (j>8){
-                    timer.cancel()
-                }
             }
         }
+        timer.reschedule(now.plusMillis(1000))
+        i+=1
     ])
-
 end
-
+*/
 rule "Show pattern color"
 when
     Item colorSettings changed 
