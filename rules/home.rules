@@ -1,23 +1,22 @@
 //TIMERS
-var Timer timer
-val String text = "Hello world"
+var Timer timer = null
+var Timer timer1 = null
+//VARIABLES
 var DecimalType volumetv 
+//UDP
+val String text = "Hello world"
+var bckgrndPAt = "0,0,100"
+val int ledTV = 13
+val int lenPat = 8
+var int iter 
+var i = 1
+var j = 1
 
 rule "Update Standby Switch"
 when
-    Item Start changed to ON
+    Item PhillipsTv changed to ON
 then
-    sendCommand(Standby, ON)
-end
-
-rule "Update Volume Tv"
-when
-    Item VolumeTV changed
-then
-    var volumetv = VolumeTV.state
-    var sourceTv = Source.state
-    logInfo("openhab", "Volume changed to = " + volumetv)
-    logInfo("openhab", "Source changed to = " + sourceTv)
+    sendCommand(Standby, OFF)
 end
 
 rule "Show pattern color"
@@ -27,106 +26,154 @@ then
     logInfo("openhab", "Color = " + colorSettings.state.toString)
 end
 
-rule "Send UDP message"
-when 
-    Item Start changed to ON
-then
-    //sendCommand(UDPSend, text)
-    logInfo("openhab", "send message "+ text)
-end
-
-rule "Receive UDP message"
-when
-    Item UDPReceive changed 
-then
-    //var String receiveMSG
-    //receiveMSG = UDPReceive.state.toString()
-    //logInfo("openhab", "UDP Received message: "+ receiveMSG)
-    //sendCommand(UDPSend, receiveMSG)
-end
-
-
 rule "Start Pattern"
 when
     Item startPattern changed to ON
 then
-    val int ledTV = 8
-    val int lenPat = 8
-    var iter = ledTV + lenPat
-    logInfo("openhab", "beginning of rule, iter = " + iter) 
-    //sendCommand(AmbilightAll, "0,0,100")
-    
-    var i = 1
-    var j = 1
-    timer = createTimer(now, [ |
-        if(i <= iter){
-            if (i <= ledTV) {
+    iter = ledTV + lenPat
+    sendCommand(AmbilightAll, bckgrndPAt)
+    i=1
+    j=1
+    timer = createTimer(now.plusMillis(100), [ |
+        if(i<=iter){
+            if (i<=ledTV) {
                 switch(i) {
-                    case 1: {   //sendCommand(AmbilightPixelLeft1, colorSettings.state.toString)
+                    case 1: {   sendCommand(AmbilightPixelLeft1, colorSettings.state.toString)
                                 logInfo("openhab", "light ON:" + i.toString) 
                         }
                     case 2: {
-                                //sendCommand(AmbilightPixelLeft2, colorSettings.state.toString)
+                                sendCommand(AmbilightPixelLeft2, colorSettings.state.toString)
                                 logInfo("openhab", "light ON:" + i.toString)
                         }
                     case 3: {
-                                //sendCommand(AmbilightPixelLeft3, colorSettings.state.toString)
+                                sendCommand(AmbilightPixelLeft3, colorSettings.state.toString)
                                 logInfo("openhab", "light ON:" + i.toString)
                         }
                     case 4: {
-                                //sendCommand(AmbilightPixelLeft4, colorSettings.state.toString)
+                                sendCommand(AmbilightPixelTop1, colorSettings.state.toString)
                                 logInfo("openhab", "light ON:" + i.toString)
                         }
                     case 5: {
+                                sendCommand(AmbilightPixelTop2, colorSettings.state.toString)
                                 logInfo("openhab", "light ON:" + i.toString)
                         }
                     case 6: {
+                                sendCommand(AmbilightPixelTop3, colorSettings.state.toString)
                                 logInfo("openhab", "light ON:" + i.toString)
                         }
-                    case 7: {
+                    case 7: {   
+                                sendCommand(AmbilightPixelTop4, colorSettings.state.toString)
                                 logInfo("openhab", "light ON:" + i.toString)
                         }
-                    case 8: {
+                    case 8: {   
+                                sendCommand(AmbilightPixelTop5, colorSettings.state.toString)
+                                logInfo("openhab", "light ON:" + i.toString)
+                        }
+                    case 9: {   
+                                sendCommand(AmbilightPixelTop6, colorSettings.state.toString)
+                                logInfo("openhab", "light ON:" + i.toString)
+                        }
+                    case 10: {   
+                                sendCommand(AmbilightPixelTop7, colorSettings.state.toString)
+                                logInfo("openhab", "light ON:" + i.toString)
+                        }
+                    case 11: {   
+                                sendCommand(AmbilightPixelRight1, colorSettings.state.toString)
+                                logInfo("openhab", "light ON:" + i.toString)
+                        }
+                    case 12: {   
+                                sendCommand(AmbilightPixelRight2, colorSettings.state.toString)
+                                logInfo("openhab", "light ON:" + i.toString)
+                        }
+                    case 13: {   
+                                sendCommand(AmbilightPixelRight3, colorSettings.state.toString)
                                 logInfo("openhab", "light ON:" + i.toString)
                         }
                 }
             }
-            if (i > lenPat){
+            if (i>lenPat){
                 switch(j) {
-                    case 1: {   
-                                //sendCommand(AmbilightPixelLeft1, "10.0,10,1")
+                    case 1: {   sendCommand(AmbilightPixelLeft1, bckgrndPAt)
                                 logInfo("openhab", "light OFF:" + j.toString) 
                         }
                     case 2: {
-                                //sendCommand(AmbilightPixelLeft2, "10.0,10,1")
+                                sendCommand(AmbilightPixelLeft2, bckgrndPAt)
                                 logInfo("openhab", "light OFF:" + j.toString)
                         }
                     case 3: {
-                                //sendCommand(AmbilightPixelLeft3, "10.0,10,1")
+                                sendCommand(AmbilightPixelLeft3, bckgrndPAt)
                                 logInfo("openhab", "light OFF:" + j.toString)
                         }
                     case 4: {
-                                //sendCommand(AmbilightPixelLeft4, "0,0,0")
+                                sendCommand(AmbilightPixelTop1, bckgrndPAt)
                                 logInfo("openhab", "light OFF:" + j.toString)
                         }
                     case 5: {
+                                sendCommand(AmbilightPixelTop2, bckgrndPAt)
                                 logInfo("openhab", "light OFF:" + j.toString)
                         }
                     case 6: {
+                                sendCommand(AmbilightPixelTop3, bckgrndPAt)
                                 logInfo("openhab", "light OFF:" + j.toString)
                         }
-                    case 7: {
+                    case 7: {   
+                                sendCommand(AmbilightPixelTop4, bckgrndPAt)
                                 logInfo("openhab", "light OFF:" + j.toString)
                         }
-                    case 8: {
+                    case 8: {   
+                                sendCommand(AmbilightPixelTop5, bckgrndPAt)
+                                logInfo("openhab", "light OFF:" + j.toString)
+                        }
+                    case 9: {   
+                                sendCommand(AmbilightPixelTop6, bckgrndPAt)
+                                logInfo("openhab", "light OFF:" + j.toString)
+                        }
+                    case 10: {   
+                                sendCommand(AmbilightPixelTop7, bckgrndPAt)
+                                logInfo("openhab", "light OFF:" + j.toString)
+                        }
+                    case 11: {   
+                                sendCommand(AmbilightPixelRight1, bckgrndPAt)
+                                logInfo("openhab", "light OFF:" + j.toString)
+                        }
+                    case 12: {   
+                                sendCommand(AmbilightPixelRight2, bckgrndPAt)
+                                logInfo("openhab", "light OFF:" + j.toString)
+                        }
+                    case 13: {   
+                                sendCommand(AmbilightPixelRight3, bckgrndPAt)
                                 logInfo("openhab", "light OFF:" + j.toString)
                         }
                 }
-                j += 1
+                j+=1
             }
+            i+=1
+            timer.reschedule(now.plusMillis(100))
         }
-        timer.reschedule(now.plusMillis(1000))
-        i += 1
+        else {
+            timer.cancel()
+            timer = null
+        }
     ])
 end
 
+rule "UDP: Answer to client"
+when
+    Item UDPReceive received update or Item Start changed from OFF to ON
+then
+    sendCommand(UDPSend, "UDP->Test 123")
+    /*
+    i=1
+    timer1 = createTimer(now.plusMillis(50), [ | 
+                                                        sendCommand(UDPSend, "UDP: Ethernet comm.")
+                                                        i+=1
+                                                        if(i<5){
+                                                            timer1.reschedule(now.plusMillis(50))
+                                                        }
+                                                        else {
+                                                            timer1.cancel()
+                                                            timer1 = null
+                                                        }
+    ])
+    */
+end

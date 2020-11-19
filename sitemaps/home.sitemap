@@ -1,15 +1,17 @@
 sitemap home label="Home" {
     Text label="TV" icon="screen"{
     	Slider item= VolumeTV label="Volume [%d]" icon="soundvolume"
-        Switch item= Standby label="Shutdown" icon="switch"
-        Switch item=SetSource label="Source" mappings=[1="TV", 2="HDMI 1", 3="HDMI 2", 4="HDMI 3", 5="HDMI SIDE"]
+        Switch item= Standby label="Shutdown" icon="switch" mappings=["OFF" = "TV OFF"]
+        Switch item=SetSource label="Source" mappings=[1 = "TV", 2 = "HDMI 1", 3 = "HDMI 2", 4 ="HDMI 3"]
+        Switch item=MuteSwitch label="Sound" icon="soundvolume"mappings=["OFF"="Volume on", "ON" = "TV muted"] visibility=[MuteSwitch==OFF]
+        Switch item=MuteSwitch label="Sound" icon="soundvolume_mute"mappings=["OFF"="Volume on", "ON" = "TV muted"] visibility=[MuteSwitch==ON]
         Text label="Ambi-lights" icon="lightbulb" {
             //AMBILIGHT
             Switch item= ActivateAmbilight label="Activate Ambi-light" icon="switch"
             Colorpicker item= AmbilightAll label="All lights" icon="colorpicker" 
             Colorpicker item= AmbilightLeft label="Lights left" icon="colorpicker" 
             Colorpicker item= AmbilightRight label="Lights right" icon="colorpicker" 
-            Colorpicker item= AmbilightTop label="Lights Top" icon="colorpicker"
+            //Colorpicker item= AmbilightTop label="Lights Top" icon="colorpicker"
             Switch item= startPattern label="Show pattern" icon="alarm"
             Text label="Ambi-lights settings" icon="settings" {
                 Colorpicker item= colorSettings label="Color of pattern" icon="colorpicker"
@@ -20,5 +22,5 @@ sitemap home label="Home" {
     	Slider item= Lifx_Brightness label="Lifx Brightness"
 		Colorpicker item= Lifx_Brightness label="Lifx Color"
     }
-    //Switch item=Start
+    Switch item=Start
 }

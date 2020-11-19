@@ -3,11 +3,16 @@ Dimmer Lifx_Temperature { channel="lifx:colorlight:D073D513EBA4:temperature" }
 Color  Lifx_Brightness { channel="lifx:colorlight:D073D513EBA4:color" }
 
 //Philips TV
+Switch PhillipsTv {channel="network:pingdevice:192_168_0_4:online"}
+DateTime lastSeenTV {channel="network:pingdevice:192_168_0_4:lastseen"}
+
 Dimmer VolumeTV 				"Volume [%d]"		<slider> {jointspace="*:volume, POLL:volume"}
 Switch MuteSwitch				"Mute" <settings> {jointspace="ON:key.Mute, OFF:key.Mute, POLL:volume.mute"}
-Switch Source "Source" {jointspace="*:key.Source"}
+Switch testPoll {jointspace="POLL:volume.muted"}
 Switch Standby "Standby" {jointspace="*:key.Standby"}
-Number SetSource "Set Source" {jointspace="1:source.tv, 2:source.hdmi1, 3:source.hdmi2, 4:source.hdmi3, 5:source.hdmiside"}
+Number SetSource "Set Source" {jointspace="1:source.tv, 2:source.hdmi1, 3:source.hdmi2, 4:source.hdmi3, 5:source.hdmiside, POLL:source"}
+String currentSource {jointspace="POLL:source"}
+Dimmer currentVolume 
 //Ambilight
 Switch startPattern "Ambilight Pattern"
 Switch AmbilightOnOff "AmbilightOnOff" {jointspace="*:key.AmbilightOnOff"}
@@ -15,26 +20,26 @@ Switch ActivateAmbilight		"Ambilight Manipulation" <settings> 		 {jointspace="ON
 Color  AmbilightAll			    "Ambilight All"			<colorwheel> {jointspace="HSB:ambilight.color"}
 Color  AmbilightLeft			"Ambilight Left"		<colorwheel> {jointspace="HSB:ambilight[layer1[left]].color"}
 Color  AmbilightRight			"Ambilight Right"		<colorwheel> {jointspace="HSB:ambilight[layer1[right]].color"}
-Color  AmbilightTop			"Ambilight Top"		<colorwheel> {jointspace="HSB:ambilight[layer1[top]].color"}
+//Color  AmbilightTop			"Ambilight Top"		<colorwheel> {jointspace="HSB:ambilight[layer1[top]].color"}
 Color colorSettings "Ambilight Setting" <colorwheel> 
 //Pixels
 Color  AmbilightPixelLeft1		"Ambilight PixelLeft"	<colorwheel> {jointspace="HSB:ambilight[layer1[left[0]]].color, POLL:ambilight[layer1[left[0]]].color"}
 Color  AmbilightPixelLeft2		"Ambilight PixelLeft"	<colorwheel> {jointspace="HSB:ambilight[layer1[left[1]]].color, POLL:ambilight[layer1[left[1]]].color"}
 Color  AmbilightPixelLeft3		"Ambilight PixelLeft"	<colorwheel> {jointspace="HSB:ambilight[layer1[left[2]]].color, POLL:ambilight[layer1[left[2]]].color"}
-Color  AmbilightPixelLeft4		"Ambilight PixelLeft"	<colorwheel> {jointspace="HSB:ambilight[layer1[left[3]]].color, POLL:ambilight[layer1[left[3]]].color"}
-Color  AmbilightPixelTop1		"Ambilight PixelTop"	<colorwheel> {jointspace="HSB:ambilight[layer1[Top[0]]].color, POLL:ambilight[layer1[Top[0]]].color"}
-Color  AmbilightPixelTop2		"Ambilight PixelTop"	<colorwheel> {jointspace="HSB:ambilight[layer1[Top[1]]].color, POLL:ambilight[layer1[Top[1]]].color"}
-Color  AmbilightPixelTop3		"Ambilight PixelTop"	<colorwheel> {jointspace="HSB:ambilight[layer1[Top[2]]].color, POLL:ambilight[layer1[Top[2]]].color"}
-Color  AmbilightPixelTop4		"Ambilight PixelTop"	<colorwheel> {jointspace="HSB:ambilight[layer1[Top[3]]].color, POLL:ambilight[layer1[Top[3]]].color"}
-Color  AmbilightPixelRight1		"Ambilight PixelRight"	<colorwheel> {jointspace="HSB:ambilight[layer1[Right[0]]].color, POLL:ambilight[layer1[Right[0]]].color"}
-Color  AmbilightPixelRight2		"Ambilight PixelRight"	<colorwheel> {jointspace="HSB:ambilight[layer1[Right[1]]].color, POLL:ambilight[layer1[Right[1]]].color"}
-Color  AmbilightPixelRight3		"Ambilight PixelRight"	<colorwheel> {jointspace="HSB:ambilight[layer1[Right[2]]].color, POLL:ambilight[layer1[Right[2]]].color"}
-Color  AmbilightPixelRight4		"Ambilight PixelRight"	<colorwheel> {jointspace="HSB:ambilight[layer1[Right[3]]].color, POLL:ambilight[layer1[Right[3]]].color"}
+Color  AmbilightPixelTop1		"Ambilight PixelTop"	<colorwheel> {jointspace="HSB:ambilight[layer1[top[0]]].color, POLL:ambilight[layer1[top[0]]].color"}
+Color  AmbilightPixelTop2		"Ambilight PixelTop"	<colorwheel> {jointspace="HSB:ambilight[layer1[top[1]]].color, POLL:ambilight[layer1[top[1]]].color"}
+Color  AmbilightPixelTop3		"Ambilight PixelTop"	<colorwheel> {jointspace="HSB:ambilight[layer1[top[2]]].color, POLL:ambilight[layer1[top[2]]].color"}
+Color  AmbilightPixelTop4		"Ambilight PixelTop"	<colorwheel> {jointspace="HSB:ambilight[layer1[top[3]]].color, POLL:ambilight[layer1[top[3]]].color"}
+Color  AmbilightPixelTop5		"Ambilight PixelTop"	<colorwheel> {jointspace="HSB:ambilight[layer1[top[4]]].color, POLL:ambilight[layer1[top[4]]].color"}
+Color  AmbilightPixelTop6		"Ambilight PixelTop"	<colorwheel> {jointspace="HSB:ambilight[layer1[top[5]]].color, POLL:ambilight[layer1[top[5]]].color"}
+Color  AmbilightPixelTop7		"Ambilight PixelTop"	<colorwheel> {jointspace="HSB:ambilight[layer1[top[6]]].color, POLL:ambilight[layer1[top[6]]].color"}
+Color  AmbilightPixelRight1		"Ambilight PixelRight"	<colorwheel> {jointspace="HSB:ambilight[layer1[right[0]]].color, POLL:ambilight[layer1[right[0]]].color"}
+Color  AmbilightPixelRight2		"Ambilight PixelRight"	<colorwheel> {jointspace="HSB:ambilight[layer1[right[1]]].color, POLL:ambilight[layer1[right[1]]].color"}
+Color  AmbilightPixelRight3		"Ambilight PixelRight"	<colorwheel> {jointspace="HSB:ambilight[layer1[right[2]]].color, POLL:ambilight[layer1[right[2]]].color"}
 
 //TCP
-//String UDPSend	{udp=">[192.168.0.241:1234:REGEX((.*))]"}
-//String UDPReceive {udp="<[192.168.0.241:*:REGEX((.*))]"}
-
+String UDPSend	{udp=">[192.168.0.241:1234:REGEX((.*))]"}
+String UDPReceive {udp="<[192.168.137.1:1234:REGEX((.*))]"}
 //TEST SWITCH
 Switch Start 
 
