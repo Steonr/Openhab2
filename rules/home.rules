@@ -3,7 +3,7 @@ var Timer timer = null
 var Timer timer1 = null
 //VARIABLES
 var DecimalType volumetv 
-//UDP
+
 val String text = "Hello world"
 var bckgrndPAt = "0,0,100"
 val int ledTV = 13
@@ -11,13 +11,8 @@ val int lenPat = 8
 var int iter 
 var i = 1
 var j = 1
-
-rule "Update Standby Switch"
-when
-    Item PhillipsTv changed to ON
-then
-    sendCommand(Standby, OFF)
-end
+//UDP
+var text = "Openhab: Test nummer 1"
 
 rule "Show pattern color"
 when
@@ -159,21 +154,7 @@ end
 
 rule "UDP: Answer to client"
 when
-    Item UDPReceive received update or Item Start changed from OFF to ON
+    Item Start changed from ON to OFF
 then
-    sendCommand(UDPSend, "UDP->Test 123")
-    /*
-    i=1
-    timer1 = createTimer(now.plusMillis(50), [ | 
-                                                        sendCommand(UDPSend, "UDP: Ethernet comm.")
-                                                        i+=1
-                                                        if(i<5){
-                                                            timer1.reschedule(now.plusMillis(50))
-                                                        }
-                                                        else {
-                                                            timer1.cancel()
-                                                            timer1 = null
-                                                        }
-    ])
-    */
+    sendCommand(UDPSend, text)
 end

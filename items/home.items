@@ -38,8 +38,9 @@ Color  AmbilightPixelRight2		"Ambilight PixelRight"	<colorwheel> {jointspace="HS
 Color  AmbilightPixelRight3		"Ambilight PixelRight"	<colorwheel> {jointspace="HSB:ambilight[layer1[right[2]]].color, POLL:ambilight[layer1[right[2]]].color"}
 
 //TCP
-String UDPSend	{udp=">[192.168.0.241:1234:REGEX((.*))]"}
-String UDPReceive {udp="<[192.168.137.1:1234:REGEX((.*))]"}
+String UDPSend	{udp=">[127.0.0.1:1234:REGEX((.*))]"}
+String UDPReceive {udp="<[127.0.0.1:1234:REGEX((.*))]"}
 //TEST SWITCH
 Switch Start 
 
+ 
